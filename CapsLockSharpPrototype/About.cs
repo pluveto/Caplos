@@ -12,7 +12,7 @@ namespace CapsLockSharpPrototype
 
         private void LinkToGithub_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            Process.Start("explorer.exe","https://github.com/pluveto/capslock-sharp");
+            Process.Start("explorer.exe", "https://github.com/pluveto/caplos");
         }
 
         private void LinkToDefaultShortcuts_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)

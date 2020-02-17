@@ -2,6 +2,7 @@
 using System.Windows.Forms;
 using CapsLockSharpPrototype.Helper;
 using CapsLockSharpPrototype.Runtime;
+using Microsoft.Win32;
 
 namespace CapsLockSharpPrototype
 {
@@ -38,7 +39,13 @@ namespace CapsLockSharpPrototype
             new Controller().SetupKeyboardHooks((x,y)=> {
                 TrayIcon.RefleshIcon(notifyIcon);
             });
+            CheckStartWithSystem();
         }
+        private void CheckStartWithSystem()
+        {
+            startWithSystem.Checked = AutoStart.CheckEnabled(Text);            
+        }
+
 
         private void AboutMenuItem_Click(object sender, EventArgs e)
         {
@@ -50,13 +57,17 @@ namespace CapsLockSharpPrototype
         {
             Show();
             WindowState = FormWindowState.Normal;
+            Visible = true;
             ShowInTaskbar = true;
             Activate();
         }
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            notifyIcon.Visible = false;
+            WindowState = FormWindowState.Minimized;
+            Hide();
+            e.Cancel = true;
+            //notifyIcon.Visible = false;
         }
 
         private void MainForm_SizeChanged(object sender, EventArgs e)
@@ -73,6 +84,23 @@ namespace CapsLockSharpPrototype
             WindowState = FormWindowState.Normal;
             ShowInTaskbar = true;
             Activate();
+        }
+
+        private void startWithSystem_CheckedChanged(object sender, EventArgs e)
+        {
+            var currentEnabled = AutoStart.CheckEnabled(Text);
+            if(startWithSystem.Checked == currentEnabled)
+            {
+                return;
+            }
+            if (startWithSystem.Checked)
+            {
+               AutoStart.Enable(Text, "\"" + Application.ExecutablePath + "\"");
+            }
+            else
+            {
+                AutoStart.Disable(Text);
+            }
         }
     }
 }
