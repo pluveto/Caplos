@@ -9,6 +9,8 @@ A tool to squeeze the power of your CapsLock key
 * 大小写状态指示
 * 按键替换
 
+不同于 Capslock++ 等软件，我开发的这个是真正的替换按键。比如你输入法选字的时候也可以用，代码提示选代码也可以用。还可以让 大小写键和 CTRL 等按键集成，比如一般状态下 Ctrl+← 是向左跳一个单词，使用本工具可以让 Ctrl+大小写+H 同样实现向左跳一个单词。而且本工具体积更小，只有 50kb 上下。
+
 ## 使用方法
 
 按下\[大小写键\]的同时按下其它按键, 可执行替换后的按键的功能.
@@ -29,3 +31,8 @@ A tool to squeeze the power of your CapsLock key
 
 1. 可以直接下载二进制文件: https://www.lanzous.com/i9fhkef
 2. 也可以自己编译
+
+## 开源地址：
+
+https://github.com/pluveto/caplos/
+
