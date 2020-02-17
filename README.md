@@ -8,7 +8,7 @@ A tool to squeeze the power of your CapsLock key
 
 ## 使用方法
 
-按下[大小写键]的同时按下其它按键, 可执行替换后的按键的功能.
+按下\[大小写键\]的同时按下其它按键, 可执行替换后的按键的功能.
 
 举例:
 
@@ -19,6 +19,8 @@ A tool to squeeze the power of your CapsLock key
 ## 键位表 (可自定义)
 
 ![键位表](https://pluvet-1251765364.cos.ap-chengdu.myqcloud.com/CDN/2019/07/27/1564216524.png)
+
+(如果没加载出来, 到[这里](https://www.pluvet.com/archives/calos.html)也可以看)
 
 ## 下载地址:
 
