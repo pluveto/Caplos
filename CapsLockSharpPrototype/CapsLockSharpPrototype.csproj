@@ -75,6 +75,7 @@
     <Compile Include="About.Designer.cs">
       <DependentUpon>About.cs</DependentUpon>
     </Compile>
+    <Compile Include="Helper\AutoStart.cs" />
     <Compile Include="Runtime\Controller.cs" />
     <Compile Include="Helper\GlobalKeyBoardHook.cs" />
     <Compile Include="Helper\KeyDefRuntime.cs" />

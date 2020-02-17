@@ -45,6 +45,7 @@ namespace CapsLockSharpPrototype
             this.keysListView = new System.Windows.Forms.ListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.startWithSystem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer)).BeginInit();
             this.splitContainer.Panel1.SuspendLayout();
@@ -63,35 +64,36 @@ namespace CapsLockSharpPrototype
             // 
             this.contextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.helpMenuItem,
+            this.startWithSystem,
             this.aboutMenuItem,
             this.toolStripMenuItem2,
             this.quitMenuItem});
             this.contextMenuStrip.Name = "contextMenuStrip";
-            this.contextMenuStrip.Size = new System.Drawing.Size(101, 76);
+            this.contextMenuStrip.Size = new System.Drawing.Size(181, 120);
             // 
             // helpMenuItem
             // 
             this.helpMenuItem.Name = "helpMenuItem";
-            this.helpMenuItem.Size = new System.Drawing.Size(100, 22);
+            this.helpMenuItem.Size = new System.Drawing.Size(124, 22);
             this.helpMenuItem.Text = "帮助";
             this.helpMenuItem.Click += new System.EventHandler(this.HelpMenuItem_Click);
             // 
             // aboutMenuItem
             // 
             this.aboutMenuItem.Name = "aboutMenuItem";
-            this.aboutMenuItem.Size = new System.Drawing.Size(100, 22);
+            this.aboutMenuItem.Size = new System.Drawing.Size(124, 22);
             this.aboutMenuItem.Text = "关于";
             this.aboutMenuItem.Click += new System.EventHandler(this.AboutMenuItem_Click);
             // 
             // toolStripMenuItem2
             // 
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(97, 6);
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(121, 6);
             // 
             // quitMenuItem
             // 
             this.quitMenuItem.Name = "quitMenuItem";
-            this.quitMenuItem.Size = new System.Drawing.Size(100, 22);
+            this.quitMenuItem.Size = new System.Drawing.Size(124, 22);
             this.quitMenuItem.Text = "退出";
             this.quitMenuItem.Click += new System.EventHandler(this.QuitMenuItem_Click);
             // 
@@ -154,6 +156,14 @@ namespace CapsLockSharpPrototype
             this.columnHeader2.Text = "替换为";
             this.columnHeader2.Width = 144;
             // 
+            // startWithSystem
+            // 
+            this.startWithSystem.CheckOnClick = true;
+            this.startWithSystem.Name = "startWithSystem";
+            this.startWithSystem.Size = new System.Drawing.Size(180, 22);
+            this.startWithSystem.Text = "开机启动";
+            this.startWithSystem.CheckedChanged += new System.EventHandler(this.startWithSystem_CheckedChanged);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
@@ -193,6 +203,7 @@ namespace CapsLockSharpPrototype
         private ListView keysListView;
         private ColumnHeader columnHeader1;
         private ColumnHeader columnHeader2;
+        private ToolStripMenuItem startWithSystem;
     }
 }
 
