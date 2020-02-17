@@ -6,6 +6,9 @@ A tool to squeeze the power of your CapsLock key
 
 ## 功能
 
+* 大小写状态指示
+* 按键替换
+
 ## 使用方法
 
 按下\[大小写键\]的同时按下其它按键, 可执行替换后的按键的功能.
