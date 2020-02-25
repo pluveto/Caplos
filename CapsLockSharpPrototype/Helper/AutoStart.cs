@@ -19,7 +19,7 @@ namespace CapsLockSharpPrototype.Helper
 
         private static RegistryKey GetRegistryKey()
         {
-            var subkey = "SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run";
+            var subkey = @"SOFTWARE\Microsoft\Windows\CurrentVersion\Run";
             RegistryKey key = Registry.CurrentUser.OpenSubKey(subkey, true);//打开注册表项
             if (key == null)
             {
@@ -31,7 +31,7 @@ namespace CapsLockSharpPrototype.Helper
         public static void Enable(string appName, string path)
         {
             var key = GetRegistryKey();
-            key.SetValue(appName, $"\"{path}\"");
+            key.SetValue(appName, $"{path}");
             key.Close();
         }
         public static void Disable(string appName)
