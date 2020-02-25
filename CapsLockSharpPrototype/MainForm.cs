@@ -10,7 +10,10 @@ namespace CapsLockSharpPrototype
     {
 
 
-        public static NotifyIcon NotifyIcon { get; set; }
+        public static NotifyIcon NotifyIcon { get; private set; }
+        public string AppName { get; private set; } = "Caplos";
+        
+
         public MainForm()
         {
             InitializeComponent();
@@ -23,6 +26,7 @@ namespace CapsLockSharpPrototype
         {
             notifyIcon.Visible = false;
             Application.Exit();
+            Environment.Exit(0);
         }
 
         private void MainForm_Load(object sender, EventArgs e)
@@ -43,7 +47,7 @@ namespace CapsLockSharpPrototype
         }
         private void CheckStartWithSystem()
         {
-            startWithSystem.Checked = AutoStart.CheckEnabled(Text);            
+            startWithSystem.Checked = AutoStart.CheckEnabled(AppName);            
         }
 
 
@@ -88,18 +92,18 @@ namespace CapsLockSharpPrototype
 
         private void startWithSystem_CheckedChanged(object sender, EventArgs e)
         {
-            var currentEnabled = AutoStart.CheckEnabled(Text);
+            var currentEnabled = AutoStart.CheckEnabled(AppName);
             if(startWithSystem.Checked == currentEnabled)
             {
                 return;
             }
             if (startWithSystem.Checked)
             {
-               AutoStart.Enable(Text, "\"" + Application.ExecutablePath + "\"");
+               AutoStart.Enable(AppName, "\"" + Application.ExecutablePath + "\"");
             }
             else
             {
-                AutoStart.Disable(Text);
+                AutoStart.Disable(AppName);
             }
         }
     }
