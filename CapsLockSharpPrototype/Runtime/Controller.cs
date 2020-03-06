@@ -52,6 +52,7 @@ namespace CapsLockSharpPrototype.Runtime
         }
         private void OnKeyExceptCapsLockChanged(GlobalKeyboardHookEventArgs e)
         {
+            if (e.KeyboardData.VirtualCode == (int)VirtualKey.LeftShift && _status.Replacing == 1) e.Handled = true;
             var keyDef = KeyDefs.FirstOrDefault(x => x.AdditionKey == (VirtualKey)e.KeyboardData.VirtualCode);
             if (keyDef.Equals(default(KeyDef)) || e.KeyboardState == KeyboardState.KeyUp || !_status.PressingCapsLock) return;
             _status.Replacing = 1;
