@@ -38,7 +38,7 @@ A tool to squeeze the power of your CapsLock key.
 
 ## 下载地址:
 
-1. 可以直接下载二进制文件: https://www.lanzous.com/i9o4asf (2/25更新)
+1. 可以直接下载二进制文件: https://www.lanzous.com/i9zzbvg (3/6更新)
 
 2. 也可以自己编译
 
