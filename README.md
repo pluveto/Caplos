@@ -36,6 +36,16 @@ A tool to squeeze the power of your CapsLock key.
 
 (如果没加载出来, 到[这里](https://www.pluvet.com/archives/calos.html)也可以看)
 
+## 设置项
+
+### 如何自定义键位？
+
+首次运行后，会生成 `Caplos.cfg` 文件，编辑即可。
+
+### 如何自定义图标是否显示？
+
+编辑 `Caplos.exe.config`，找到 `<add key="showIcon" value="true"/>` 配置项，`true`  表示显示，`false` 表示不显示。
+
 ## 下载地址:
 
 1. 可以直接下载二进制文件: https://www.lanzous.com/i9zzbvg (3/6更新)
