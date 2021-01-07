@@ -40,7 +40,8 @@ namespace CapsLockSharpPrototype
                 
             }
             NotifyIcon = notifyIcon;
-            new Controller().SetupKeyboardHooks((x,y)=> {
+            Program.GlobalController = new Controller();
+            Program.GlobalController.SetupKeyboardHooks((x,y)=> {
                 TrayIcon.RefleshIcon(notifyIcon);
             });
             CheckStartWithSystem();
