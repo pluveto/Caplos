@@ -8,16 +8,23 @@ namespace CapsLockSharpPrototype
 {
     public partial class MainForm : Form
     {
-
-
         public static NotifyIcon NotifyIcon { get; private set; }
         public string AppName { get; private set; } = "Caplos";
-        
+        private bool windowCreate = true;
+
+        protected override void OnActivated(EventArgs e)
+        {
+            if (windowCreate)
+            {
+                base.Visible = false;
+                windowCreate = false;
+            }
+            base.OnActivated(e);
+        }
 
         public MainForm()
         {
             InitializeComponent();
-            WindowState = FormWindowState.Minimized;
             Helper.KeyDefRuntime.KeyDefs = Helper.KeyDefRuntime.SetUpKeyDefs();
             TrayIcon.RefleshIcon(notifyIcon);
         }
@@ -33,24 +40,24 @@ namespace CapsLockSharpPrototype
         {
             foreach (var item in KeyDefRuntime.KeyDefs)
             {
-                if(item.Type == KeyDefRuntime.FuncType.Replace)
+                if (item.Type == KeyDefRuntime.FuncType.Replace)
                 {
                     keysListView.Items.Add(new ListViewItem(new[] { $"[CapsLock] + {item.AdditionKey.ToString()}", item.ReplacingKey.ToString() }));
                 }
-                
             }
             NotifyIcon = notifyIcon;
             Program.GlobalController = new Controller();
-            Program.GlobalController.SetupKeyboardHooks((x,y)=> {
+            Program.GlobalController.SetupKeyboardHooks((x, y) =>
+            {
                 TrayIcon.RefleshIcon(notifyIcon);
             });
             CheckStartWithSystem();
         }
+
         private void CheckStartWithSystem()
         {
-            startWithSystem.Checked = AutoStart.CheckEnabled(AppName);            
+            startWithSystem.Checked = AutoStart.CheckEnabled(AppName);
         }
-
 
         private void AboutMenuItem_Click(object sender, EventArgs e)
         {
@@ -58,6 +65,7 @@ namespace CapsLockSharpPrototype
             x.ShowDialog();
             x.Dispose();
         }
+
         private void NotifyIcon_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             Show();
@@ -94,13 +102,14 @@ namespace CapsLockSharpPrototype
         private void startWithSystem_CheckedChanged(object sender, EventArgs e)
         {
             var currentEnabled = AutoStart.CheckEnabled(AppName);
-            if(startWithSystem.Checked == currentEnabled)
+            if (startWithSystem.Checked == currentEnabled)
             {
                 return;
             }
+
             if (startWithSystem.Checked)
             {
-               AutoStart.Enable(AppName, "\"" + Application.ExecutablePath + "\"");
+                AutoStart.Enable(AppName, "\"" + Application.ExecutablePath + "\"");
             }
             else
             {
