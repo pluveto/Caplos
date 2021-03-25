@@ -8,16 +8,23 @@ namespace CapsLockSharpPrototype
 {
     public partial class MainForm : Form
     {
-
-
         public static NotifyIcon NotifyIcon { get; private set; }
         public string AppName { get; private set; } = "Caplos";
+        private bool windowCreate = true;
 
+        protected override void OnActivated(EventArgs e)
+        {
+            if (windowCreate)
+            {
+                base.Visible = false;
+                windowCreate = false;
+            }
+            base.OnActivated(e);
+        }
 
         public MainForm()
         {
             InitializeComponent();
-            WindowState = FormWindowState.Minimized;
             Helper.KeyDefRuntime.KeyDefs = Helper.KeyDefRuntime.SetUpKeyDefs();
             TrayIcon.RefleshIcon(notifyIcon);
         }
@@ -38,7 +45,6 @@ namespace CapsLockSharpPrototype
                 {
                     keysListView.Items.Add(new ListViewItem(new[] { $"[CapsLock] + {item.AdditionKey.ToString()}", item.ReplacingKey.ToString() }));
                 }
-
             }
             NotifyIcon = notifyIcon;
 
@@ -62,11 +68,11 @@ namespace CapsLockSharpPrototype
             });
             CheckStartWithSystem();
         }
+
         private void CheckStartWithSystem()
         {
             startWithSystem.Checked = AutoStart.CheckEnabled(AppName);
         }
-
 
         private void AboutMenuItem_Click(object sender, EventArgs e)
         {
@@ -74,6 +80,7 @@ namespace CapsLockSharpPrototype
             x.ShowDialog();
             x.Dispose();
         }
+
         private void NotifyIcon_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             Show();
@@ -114,6 +121,7 @@ namespace CapsLockSharpPrototype
             {
                 return;
             }
+
             if (startWithSystem.Checked)
             {
                 AutoStart.Enable(AppName, "\"" + Application.ExecutablePath + "\"");
