@@ -12,7 +12,7 @@ namespace CapsLockSharpPrototype
 
         public static NotifyIcon NotifyIcon { get; private set; }
         public string AppName { get; private set; } = "Caplos";
-        
+
 
         public MainForm()
         {
@@ -28,27 +28,43 @@ namespace CapsLockSharpPrototype
             Application.Exit();
             Environment.Exit(0);
         }
-
+        int normalWheel = 0;
+        int fastWheel = 0;
         private void MainForm_Load(object sender, EventArgs e)
         {
             foreach (var item in KeyDefRuntime.KeyDefs)
             {
-                if(item.Type == KeyDefRuntime.FuncType.Replace)
+                if (item.Type == KeyDefRuntime.FuncType.Replace)
                 {
                     keysListView.Items.Add(new ListViewItem(new[] { $"[CapsLock] + {item.AdditionKey.ToString()}", item.ReplacingKey.ToString() }));
                 }
-                
+
             }
             NotifyIcon = notifyIcon;
+
+            normalWheel = MouseConfig.GetMouseWheel();
+            fastWheel = MouseConfig.GetMouseWheel() * 2;
+            if (fastWheel < 0) fastWheel = -1;
+            if (fastWheel > 20) fastWheel = 20;
+
             Program.GlobalController = new Controller();
-            Program.GlobalController.SetupKeyboardHooks((x,y)=> {
+            Program.GlobalController.SetupKeyboardHooks((x, y) =>
+            {
                 TrayIcon.RefleshIcon(notifyIcon);
+                if (Control.IsKeyLocked(Keys.CapsLock))
+                {
+                    MouseConfig.SetMouseWheel((uint)fastWheel);
+                }
+                else
+                {
+                    MouseConfig.SetMouseWheel((uint)normalWheel);
+                }
             });
             CheckStartWithSystem();
         }
         private void CheckStartWithSystem()
         {
-            startWithSystem.Checked = AutoStart.CheckEnabled(AppName);            
+            startWithSystem.Checked = AutoStart.CheckEnabled(AppName);
         }
 
 
@@ -94,13 +110,13 @@ namespace CapsLockSharpPrototype
         private void startWithSystem_CheckedChanged(object sender, EventArgs e)
         {
             var currentEnabled = AutoStart.CheckEnabled(AppName);
-            if(startWithSystem.Checked == currentEnabled)
+            if (startWithSystem.Checked == currentEnabled)
             {
                 return;
             }
             if (startWithSystem.Checked)
             {
-               AutoStart.Enable(AppName, "\"" + Application.ExecutablePath + "\"");
+                AutoStart.Enable(AppName, "\"" + Application.ExecutablePath + "\"");
             }
             else
             {
