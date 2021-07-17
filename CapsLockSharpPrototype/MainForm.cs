@@ -26,7 +26,7 @@ namespace CapsLockSharpPrototype
             get
             {
                 var Params = base.CreateParams;
-                // 避免在 Win+Tab 视图显式
+                // 避免在 Win+Tab 视图显示
                 Params.ExStyle |= 0x80;
                 return Params;
             }
