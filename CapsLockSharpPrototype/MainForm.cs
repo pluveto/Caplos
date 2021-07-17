@@ -20,8 +20,18 @@ namespace CapsLockSharpPrototype
                 windowCreate = false;
             }
             base.OnActivated(e);
-        }
+        }        
+        protected override CreateParams CreateParams
+        {
+            get
+            {
+                var Params = base.CreateParams;
+                // 避免在 Win+Tab 视图显式
+                Params.ExStyle |= 0x80;
 
+                return Params;
+            }
+        }
         public MainForm()
         {
             InitializeComponent();
