@@ -20,7 +20,7 @@ namespace CapsLockSharpPrototype
                 windowCreate = false;
             }
             base.OnActivated(e);
-        }        
+        }
         protected override CreateParams CreateParams
         {
             get
@@ -28,7 +28,6 @@ namespace CapsLockSharpPrototype
                 var Params = base.CreateParams;
                 // 避免在 Win+Tab 视图显式
                 Params.ExStyle |= 0x80;
-
                 return Params;
             }
         }
@@ -45,8 +44,8 @@ namespace CapsLockSharpPrototype
             Application.Exit();
             Environment.Exit(0);
         }
-        int normalWheel = 0;
-        int fastWheel = 0;
+        /*int normalWheel = 0;
+        int fastWheel = 0;*/
         private void MainForm_Load(object sender, EventArgs e)
         {
             foreach (var item in KeyDefRuntime.KeyDefs)
@@ -58,23 +57,23 @@ namespace CapsLockSharpPrototype
             }
             NotifyIcon = notifyIcon;
 
-            normalWheel = MouseConfig.GetMouseWheel();
+            /*normalWheel = MouseConfig.GetMouseWheel();
             fastWheel = MouseConfig.GetMouseWheel() * 2;
             if (fastWheel < 0) fastWheel = -1;
-            if (fastWheel > 20) fastWheel = 20;
+            if (fastWheel > 20) fastWheel = 20;*/
 
             Program.GlobalController = new Controller();
             Program.GlobalController.SetupKeyboardHooks((x, y) =>
             {
                 TrayIcon.RefleshIcon(notifyIcon);
-                if (Control.IsKeyLocked(Keys.CapsLock))
+                /*if (Control.IsKeyLocked(Keys.CapsLock))
                 {
                     MouseConfig.SetMouseWheel((uint)fastWheel);
                 }
                 else
                 {
                     MouseConfig.SetMouseWheel((uint)normalWheel);
-                }
+                }*/
             });
             CheckStartWithSystem();
         }
