@@ -49,8 +49,8 @@ A tool to squeeze the power of your CapsLock key.
 ## 下载地址:
 
 1. 可以直接下载二进制文件: https://wwx.lanzoui.com/idVu9rj3h8j (2021-07-17更新)
-
-2. 也可以自己编译
+2. 此版本支持 Ctrl+Space 切换中英文。仅供测试：https://wwx.lanzoui.com/iby7Xrj3tgj
+3. 也可以自己编译
 
 ## 开源地址：
 
