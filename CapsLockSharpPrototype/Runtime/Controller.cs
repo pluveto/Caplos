@@ -61,6 +61,7 @@ namespace CapsLockSharpPrototype.Runtime
                 SendKeySimulatedAndSetStatus(ref _status.ReleasingCapsLockSimulated, false, VirtualKey.CapsLock);
                 SendKeyEvent((int)VirtualKey.LeftControl, 0, 0, UIntPtr.Zero);
                 SendKeyEvent((int)VirtualKey.Space, 0, 0, UIntPtr.Zero);
+                SendKeyEvent((int)VirtualKey.LeftControl, 0, 2, UIntPtr.Zero);
                 _status.Replacing = 2;
                 e.Handled = true;
                 return;
